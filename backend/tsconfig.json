@@ -24,8 +24,7 @@
       "@/*": ["./src/*"],
       "@modules/*": ["./src/modules/*"],
       "@shared/*": ["./src/shared/*"],
-      "@status/*": ["./src/modules/simulation/domain/status/*"],
-      "@value-objects/*": ["./src/modules/simulation/domain/value-objects/*"]
+      "@types/*": ["./src/modules/simulation/domain/types/*"],
     }
   },
   "include": ["src/**/*", "test/**/*", "prisma/**/*"]
