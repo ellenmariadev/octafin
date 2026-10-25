@@ -1,4 +1,4 @@
-import type { SimulationStatus } from "@types/simulation.status";
+import type { SimulationStatus } from "@type/simulation-status";
 
 export interface Simulation {
   id: string;

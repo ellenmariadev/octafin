@@ -1,5 +1,5 @@
-import type { BankId } from "@types/bank-id.enum";
-import type { BankOfferStatus } from "@types/bank-offer.status";
+import type { BankId } from "@type/bank-id";
+import type { BankOfferStatus } from "@type/bank-offer-status";
 
 export interface BankOffer {
   id: string;

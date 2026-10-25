@@ -4,7 +4,7 @@ import {
   ValidatorConstraint,
   ValidatorConstraintInterface,
 } from "class-validator";
-import { isValidBirthDate } from "@shared/utils/date";
+import { isValidBirthDate } from "@/shared/utils/date";
 
 @ValidatorConstraint({ name: "isValidBirthDate", async: false })
 export class IsValidBirthDateConstraint implements ValidatorConstraintInterface {
