@@ -1,0 +1,61 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum SimulationStatus {
+  QUEUED
+  PROCESSING
+  COMPLETED
+  PARTIAL
+  FAILED
+}
+
+enum BankOfferStatus {
+  PENDING
+  IN_PROGRESS
+  APPROVED
+  DENIED
+  TIMEOUT
+  ERROR
+}
+
+model Simulation {
+  id                   String           @id @default(uuid())
+  status               SimulationStatus @default(QUEUED)
+  idempotencyKey       String?          @unique
+  cpfMasked            String
+  requestedAmountCents Int
+  installments         Int
+  deadlineAt           DateTime
+  createdAt            DateTime         @default(now())
+  completedAt          DateTime?
+
+  offers BankOffer[]
+
+  @@index([status, deadlineAt])
+}
+
+model BankOffer {
+  id                  String           @id @default(uuid())
+  simulationId        String
+  bankId              String
+  status              BankOfferStatus  @default(PENDING)
+  approvedAmountCents Int?
+  installmentCents    Int?
+  totalCents          Int?
+  monthlyRateBps      Int?
+  reason              String?
+  latencyMs           Int?
+  attempts            Int              @default(0)
+  errorCode           String?
+  updatedAt           DateTime         @updatedAt
+
+  simulation Simulation @relation(fields: [simulationId], references: [id], onDelete: Cascade)
+
+  @@unique([simulationId, bankId])
+  @@index([simulationId])
+}
