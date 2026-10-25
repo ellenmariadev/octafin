@@ -23,17 +23,12 @@ describe("date", () => {
       expect(isValidBirthDate("2050-01-01")).toBe(false);
     });
 
-    it.each([
-      "1800-01-01",
-      "1990-13-01",
-      "1990-02-30",
-      "15-05-1990",
-      "not-a-date",
-      "",
-      undefined,
-    ])("rejects %s", (value) => {
-      expect(isValidBirthDate(value)).toBe(false);
-    });
+    it.each(["1800-01-01", "1990-13-01", "1990-02-30", "15-05-1990", "not-a-date", "", undefined])(
+      "rejects %s",
+      (value) => {
+        expect(isValidBirthDate(value)).toBe(false);
+      },
+    );
 
     it("rejects leap-day on non-leap years", () => {
       expect(isValidBirthDate("1999-02-29")).toBe(false);
