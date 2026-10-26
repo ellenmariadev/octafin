@@ -27,5 +27,5 @@
       "@type/*": ["./src/shared/types/*"]
     }
   },
-  "include": ["src/**/*", "prisma/**/*"]
+  "include": ["src/**/*", "src/test/**/*", "prisma/**/*"]
 }

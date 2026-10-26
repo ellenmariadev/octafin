@@ -42,6 +42,10 @@ export class QueueService implements OnModuleInit, OnModuleDestroy {
     return this.boss.schedule(name, cron, data, options);
   }
 
+  createQueue(name: string, options?: PgBoss.Queue): Promise<void> {
+    return this.boss.createQueue(name, options);
+  }
+
   work<ReqData>(name: string, handler: PgBoss.WorkHandler<ReqData>): Promise<string> {
     return this.boss.work(name, handler);
   }
